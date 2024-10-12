@@ -1,0 +1,83 @@
+body *{
+	font-family: 'Open Sans', sans-serif;
+  }
+  
+  h1 {
+	font-weight: 900;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 50px;
+  }
+
+  h3{
+    font-weight: 900;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 30px;
+    text-align: center;
+  }
+  
+  body {
+	background-color: lightgray;
+  }
+  
+  .page {
+	width: 1000px;
+	background-color: lightsteelblue;
+	margin: auto;
+	padding: 50px;
+	padding-top: 35px;
+  }
+  
+  .vis-container {
+    max-width: 100%; /* Prevent charts from overflowing the grid */
+    height: 400px; /* Set a consistent height */
+    margin: 0 auto;
+    box-sizing: border-box; /* Ensure padding/borders are included in the total width */
+    
+}
+
+#choropleth_map, #bubble_chart {
+    width: 50%; /* Let the grid control the width */
+    max-width: 50%; /* Ensure the charts don’t exceed their grid column width */
+    height: 100px; 
+    margin: 0 auto;
+}
+
+  
+  .description h2,
+  h1 {
+	margin-top: 0px;
+  }
+  
+  .description-right {
+  padding-top: 50px;
+	padding-left: 50px;
+  }
+  
+  .description-left {
+  padding-top: 50px;
+	padding-right: 50px;
+  }
+  
+  .pure-g {
+	margin-bottom: 40px;
+  }
+  
+  .small-font {
+	font-size: 14px;
+  }
+
+  .med-font {
+    font-size: 24px;
+    }
+
+  .boldOrange_text {
+    color: #ff8c69 ;
+    font-weight: bold;
+}
+
+.boldBlue_text {
+    color: #0041c2 ;
+    font-weight: bold;
+}
+
+
