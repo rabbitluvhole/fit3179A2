@@ -1,0 +1,99 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Car Resale in Malaysia by State",
+    "fontSize": 18,
+    "anchor": "middle",
+    "fontWeight": "bold"
+  },
+  "width": 650,
+  "height": 300,
+  "background": "transparent",
+  "projection": {"type": "equalEarth"},
+  "data": {
+    "url": "https://raw.githubusercontent.com/rabbitluvhole/a2/refs/heads/main/js/ne_10m_admin_1_states_provinces.topojson",
+    "format": {"type": "topojson", "feature": "ne_10m_admin_1_states_provinces"}
+  },
+  "transform": [
+    {
+      "lookup": "properties.name",
+      "from": {
+        "data": {
+          "url": "https://raw.githubusercontent.com/rabbitluvhole/a2/refs/heads/main/data/state_car_count.csv",
+          "format": {"type": "csv"}
+        },
+        "key": "State",
+        "fields": ["Car_Count", "Pop"]
+      }
+    },
+    {
+      "calculate": "floor(datum.Car_Count / datum.Pop * 1000000)", "as": "Cars Resold per 10,000 population"
+    }
+    
+  ],
+  "layer": [
+    {
+      "mark": {
+        "type": "geoshape",
+        "stroke": "black",
+        "strokeWidth": 1
+      },
+      "encoding": {
+        "color": {
+          "condition": [{
+            "test": "datum.Car_Count == 0 || datum.Car_Count == null",
+            "value": "#d3d3d3"},
+            {
+            "test": "datum['properties.name'] == 'Kuala Lumpur'",
+            "value": "orange"
+          }],
+          "field": "Cars Resold per 10,000 population",
+          "type": "quantitative",
+          "scale": {
+            "type": "log",
+            "domain": [1, 307],
+            "scheme": "blues"
+          },
+          "legend": {"title": "Count","titleFontSize": 12,"labelFontSize": 10, "titleAnchor": "middle"}
+        },
+        "tooltip": [
+          {"field": "properties.name", "type": "nominal", "title": "State"},
+          {"field": "Cars Resold per 10,000 population", "type": "quantitative", "title": "Cars Resold per 10,000 population"}
+        ]
+      }
+    },
+    {
+      "transform": [{"filter": "datum.properties.name == 'Selangor'"}
+                    ],
+      "mark": {"type": "text", "dy": 180, "dx": 90}, 
+      "encoding": {
+        "longitude": {"value": 101.5183},
+        "latitude": {"value": 3.0738},
+        "text": {"value": "Kuala Lumpur: 126 cars"},  
+        "color": {"value": "black"} 
+      }
+    },
+    {
+      "transform": [{"filter": "datum.properties.name == 'Johor'"}
+                    ],
+      "mark": {"type": "text", "dy": 240, "dx": 185}, 
+      "encoding": {
+        "longitude": {"value": 102.2551},
+        "latitude": {"value": 6.1254},
+        "text": {"value": "Johor: 53 cars"},  
+        "color": {"value": "black"} 
+      }
+    },
+    {
+      "transform": [{"filter": "datum.properties.name == 'Pulau Pinang'"}
+                    ],
+      "mark": {"type": "text", "dy": 105, "dx": 90}, 
+      "encoding": {
+        "longitude": {"value": 102.2551},
+        "latitude": {"value": 6.1254},
+        "text": {"value": "Pulau Pinang: 82 cars"},  
+        "color": {"value": "black"} 
+      }
+    }
+  ]
+}

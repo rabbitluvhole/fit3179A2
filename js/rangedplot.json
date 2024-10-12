@@ -1,0 +1,130 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "height": 400,
+    "width": 300,
+    "background": "transparent",
+    "data": {
+      "values": [
+        {"Brand": "BMW", "Min_Listing_Price": 39999, "Max_Listing_Price": 538800},
+        {"Brand": "Honda", "Min_Listing_Price": 24800, "Max_Listing_Price": 139999},
+        {"Brand": "Mazda", "Min_Listing_Price": 21900, "Max_Listing_Price": 115888},
+        {"Brand": "Mercedes-Benz", "Min_Listing_Price": 42800, "Max_Listing_Price": 438800},
+        {"Brand": "Toyota", "Min_Listing_Price": 28800, "Max_Listing_Price": 588000}
+      ]
+    },
+    "layer": [
+      {
+        "mark": "rule",
+        "encoding": {
+          "x": {
+            "field": "Min_Listing_Price",
+            "type": "quantitative",
+            "title": "Listing Price Range"
+          },
+          "x2": {
+            "field": "Max_Listing_Price"
+          },
+          "y": {
+            "field": "Brand",
+            "type": "nominal",
+            "sort": "ascending",
+            "title": "Brand"
+          }
+          
+        }
+      },
+      {
+        "mark": {
+          "type": "point",
+          "filled": true,
+          "size": 100
+        },
+        "encoding": {
+          "x": {
+            "field": "Min_Listing_Price",
+            "type": "quantitative"
+          }, "color": {
+              "field": "Brand",
+              "type": "nominal",
+              "scale": {
+                "domain": ["BMW", "Honda", "Toyota", "Mercedes-Benz", "Mazda"],
+                "range": ["#9f40ad", "#f01619", "#3d87c4", "#0400ff", "#ff7f00"]
+              }
+            },
+          "y": {
+            "field": "Brand",
+            "type": "nominal"
+          },
+          "tooltip": [
+          {"field": "Brand", "title": "Brand"},
+          {"field": "Min_Listing_Price", "type": "quantitative", "title": "Minimum Listing Price"}
+        ]
+        }
+      },
+      {
+        "mark": {
+          "type": "point",
+          "filled": true,
+          "size": 100
+      
+        },
+        "encoding": {
+          "x": {
+            "field": "Max_Listing_Price",
+            "type": "quantitative"
+          }, "color": {
+              "field": "Brand",
+              "type": "nominal",
+              "scale": {
+                "domain": ["BMW", "Honda", "Toyota", "Mercedes-Benz", "Mazda"],
+                "range": ["#9f40ad", "#f01619", "#3d87c4", "#0400ff", "#ff7f00"]
+              }
+            },
+          "y": {
+            "field": "Brand",
+            "type": "nominal"
+          },
+          "tooltip": [
+          {"field": "Brand", "title": "Brand"},
+          {"field": "Max_Listing_Price", "type": "quantitative", "title": "Maximum Listing Price"}
+        ]
+        }
+      },
+      {
+        "mark": {
+          "type": "text",
+          "align": "left",
+          "baseline": "middle",
+          "dx": -65, "dy": 180
+        },
+        "encoding": {
+          "text": {"value": "Widest Range of Listing Prices"},  
+          "color": {"value": "black"} }
+      },
+      {
+        "mark": {
+          "type": "text",
+          "align": "left",
+          "baseline": "middle",
+          "dx": -145, "dy": -15
+        },
+        "encoding": {
+          "text": {"value": "Lowest Listing Price"},  
+          "color": {"value": "black"} }
+      },
+      {
+        "mark": {
+          "type": "text",
+          "align": "left",
+          "baseline": "middle",
+          "dx": 50, "dy": 150
+        },
+        "encoding": {
+          "text": {"value": "Highest Listing Price"},  
+          "color": {"value": "black"} }
+      }
+      
+
+    ]
+  }
+  
